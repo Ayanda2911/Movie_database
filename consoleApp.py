@@ -17,20 +17,22 @@ class ConsoleApp:
             display_menu()
             choice = input("Enter your choice (1-4): ").strip()
 
-            switch = {
-                "1": t.tabulate(self.db.genre_distribution_analysis_by_year(),
-                                 headers=['Year', 'Genre', 'Count'], tablefmt='psql'),
-                "2": t.tabulate(self.db.sort_average_rating(),
-                                    headers=['Title', 'Average Rating'], tablefmt='psql'),
-                "3": t.tabulate(self.db.average_rating_by_gender(),
-                                headers=['Title', 'Gender', 'Average Rating'], tablefmt='psql'),
-                "4": self.exit_program(),
-            }
-            selected_option = switch.get(choice)
-            if selected_option:
-                print(selected_option)
-            else:
-                print("Invalid choice. Please enter a number between 1 and 4.")
+            match choice:
+                case "1":
+                    print(t.tabulate(self.db.genre_distribution_analysis_by_year(),
+                            headers=['Year', 'Genre', 'Count'], tablefmt='psql'))
+                case "2":
+                    print(t.tabulate(self.db.sort_average_rating(),
+                            headers=['Title', 'Average Rating'], tablefmt='psql'))
+                case "3":
+                    print(t.tabulate(self.db.average_rating_by_gender(),
+                            headers=['Title', 'Gender', 'Average Rating'], tablefmt='psql'))
+                case "4":
+                    self.exit_program()
+                    self.db.close()
+                    print("Exiting program. Goodbye!")
+                case _:
+                    print("Invalid choice. Please enter a number between 1 and 4.")
 
     def exit_program(self):
         print("Exiting program. Goodbye!")
