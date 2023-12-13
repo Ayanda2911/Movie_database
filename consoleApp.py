@@ -10,7 +10,7 @@ def display_menu():
 
 class ConsoleApp:
     def __init__(self):
-        self.db = db.MoviesDatabase(rebuild=False)
+        self.db = db.MoviesDatabase(rebuild=True)
 
     def output(self):
         while True:
