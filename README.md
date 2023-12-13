@@ -15,6 +15,7 @@ you need to install the following packages:
 ## Usage
 To run the program, you need to run the following command in the terminal:
     ```python3 main.py```
+This should output a menu
 Note: 
 The database needs to be built which takes some time, it can take up to an hour. 
 After building the database the first time you can set the variable ```rebuild=False``` in the db.py file to speed up the process.
